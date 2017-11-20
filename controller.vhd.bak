@@ -1,0 +1,84 @@
+--=================================================--
+--	Project:	Color indentifier with FPGA
+--	File:		Controller.vhd 
+--	Author: 	Leonardo Benitez and Gencen
+--	Endianess:	litle endian
+--	Version:	1.0 					   29/10/2017
+--=================================================--
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+-----------------------------------------------------
+
+entity controller is
+	port(
+		CLK			: in 	std_logic;	-- 50MHz
+		COMPARE		: in	std_logic;	-- Key (user interface)
+		LIGHT_BLUE	: out	std_logic;	-- Signal to the sensor
+		LIGHT_GREEN	: out	std_logic;	-- Signal to the sensor
+		READ_BLUE	: out 	std_logic;	-- Command to datapath register enable
+		READ_GREEN	: out	std_logic	-- Command to datapath register enable
+	);
+end controller;
+
+-----------------------------------------------------
+
+architecture funcional of controller is
+	type state is (state_wait, state_read_blue, state_read_green, state_process, state_print);
+	signal current_state, next_state: state;
+begin
+	-- Process to update the current state
+	process(CLK)
+	begin
+		if(CLK'event and CLK='1') then
+			current_state <= next_state;
+		end if;
+	end process;
+	
+	-- Process to set the outputs and the next state
+	process(current_state, COMPARE)
+		type integer is range 0 to 50000000;
+		variable count : integer;
+	begin
+		count <= 0;
+		case current_state is
+			when state_wait =>
+				LIGHT_BLUE	<= '0';
+				READ_BLUE	<= '0';
+				LIGHT_GREEN	<= '0';
+				READ_GREEN	<= '0';
+				if (COMPARE = '0') then
+					next_state	<= state_read_blue;
+				end if;
+				
+			when state_read_blue =>
+				LIGHT_BLUE	<= '0';
+				READ_BLUE	<= '1';
+				LIGHT_GREEN	<= '0';
+				READ_GREEN	<= '0';
+				next_state	<= state_read_green;
+				
+			when state_read_green =>
+				LIGHT_BLUE	<= '0';
+				READ_BLUE	<= '0';
+				LIGHT_GREEN	<= '1';
+				READ_GREEN	<= '0';
+				next_state	<= state_process;
+				
+			when state_process =>
+				LIGHT_BLUE	<= '0';
+				READ_BLUE	<= '0';
+				LIGHT_GREEN	<= '0';
+				READ_GREEN	<= '0';
+				next_state	<= state_print;
+				
+			when state_print =>
+				LIGHT_BLUE	<= '0';
+				READ_BLUE	<= '0';
+				LIGHT_GREEN	<= '0';
+				READ_GREEN	<= '0';
+				next_state	<= state_wait;
+		end case;
+	end process;
+end funcional;

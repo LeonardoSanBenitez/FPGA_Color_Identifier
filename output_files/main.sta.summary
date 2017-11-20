@@ -1,0 +1,77 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'CLOCK_50'
+Slack : -7.900
+TNS   : -592.280
+
+Type  : Slow 1200mV 85C Model Setup 'controller:CT|current_state.state_print'
+Slack : -3.058
+TNS   : -6.214
+
+Type  : Slow 1200mV 85C Model Hold 'CLOCK_50'
+Slack : 0.387
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'controller:CT|current_state.state_print'
+Slack : 0.484
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -3.000
+TNS   : -114.795
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'controller:CT|current_state.state_print'
+Slack : 0.425
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'CLOCK_50'
+Slack : -7.083
+TNS   : -529.918
+
+Type  : Slow 1200mV 0C Model Setup 'controller:CT|current_state.state_print'
+Slack : -2.814
+TNS   : -5.589
+
+Type  : Slow 1200mV 0C Model Hold 'CLOCK_50'
+Slack : 0.340
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'controller:CT|current_state.state_print'
+Slack : 0.474
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -3.000
+TNS   : -114.795
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'controller:CT|current_state.state_print'
+Slack : 0.366
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'CLOCK_50'
+Slack : -3.433
+TNS   : -245.264
+
+Type  : Fast 1200mV 0C Model Setup 'controller:CT|current_state.state_print'
+Slack : -1.280
+TNS   : -1.881
+
+Type  : Fast 1200mV 0C Model Hold 'controller:CT|current_state.state_print'
+Slack : 0.145
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'CLOCK_50'
+Slack : 0.162
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -3.000
+TNS   : -116.089
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'controller:CT|current_state.state_print'
+Slack : 0.296
+TNS   : 0.000
+
+------------------------------------------------------------

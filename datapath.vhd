@@ -1,0 +1,39 @@
+--=================================================--
+--	Project:	Color indentifier with FPGA
+--	File:		datapath.vhd 
+--	Author: 	Leonardo Benitez and Gencen
+--	Endianess:	litle endian
+--	Version:	1.0 					   29/10/2017
+--=================================================--
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+-----------------------------------------------------
+
+entity datapath is
+	port(
+		CLK			: in 	std_logic;							-- 50 MHz
+		EN_BLUE		: in 	std_logic;							-- Command from the controller 
+		EN_GREEN	: in 	std_logic;							-- Command from the controller 
+		DATA		: in	std_logic_vector (7 downto 0);		-- Data input from the sensor 
+		OUT_BLUE	: out	std_logic_vector (7 downto 0);
+		OUT_GREEN	: out	std_logic_vector (7 downto 0)
+	);
+end datapath;
+
+-----------------------------------------------------
+
+architecture funcional of datapath is
+	component reg_8b_pipo is
+		port (
+			D		: in	std_logic_vector(7 downto 0);
+			CLK		: in	std_logic;
+			EN		: in	std_logic;
+			Q		: out	std_logic_vector(7 downto 0)
+		);	
+	end component;
+begin
+	RB: reg_8b_pipo port map (DATA, CLK, EN_BLUE,	OUT_BLUE);
+	RG: reg_8b_pipo port map (DATA, CLK, EN_GREEN,	OUT_GREEN);
+end funcional;

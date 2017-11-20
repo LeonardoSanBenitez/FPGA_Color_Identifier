@@ -1,0 +1,23 @@
+
+State Machine - |main|lcd_printer:LP|lcd_controller:dut|state
+Name state.send state.ready state.initialize state.power_up 
+state.power_up 0 0 0 0 
+state.initialize 0 0 1 1 
+state.ready 0 1 0 1 
+state.send 1 0 0 1 
+
+State Machine - |main|lcd_printer:LP|lcd_controller:dut|current_state
+Name current_state.S2 current_state.S1 current_state.S0 
+current_state.S0 0 0 0 
+current_state.S1 0 1 1 
+current_state.S2 1 0 1 
+
+State Machine - |main|controller:CT|current_state
+Name current_state.state_print current_state.state_wait_green current_state.state_read_green current_state.state_wait_blue current_state.state_init current_state.state_wait current_state.state_read_blue 
+current_state.state_read_blue 0 0 0 0 0 0 0 
+current_state.state_wait 0 0 0 0 0 1 1 
+current_state.state_init 0 0 0 0 1 0 1 
+current_state.state_wait_blue 0 0 0 1 0 0 1 
+current_state.state_read_green 0 0 1 0 0 0 1 
+current_state.state_wait_green 0 1 0 0 0 0 1 
+current_state.state_print 1 0 0 0 0 0 1 

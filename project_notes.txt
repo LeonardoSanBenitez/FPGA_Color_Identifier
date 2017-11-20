@@ -1,0 +1,4 @@
+LDR reduz a resitência com a luminosidade 
+o circuito será feito com resistor de pull down (R-fixo indo pro terra e LDR indo pro vcc) 
+ex: objeto azul > flash azul  têm vout alto > flash verde tem vout baixo 
+a placaquinha do matsuo já tem um conversor A/D 8 bits inbutido (com entrada de Clear)  
