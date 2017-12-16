@@ -1,5 +1,5 @@
 Analysis & Synthesis report for main
-Mon Nov 20 15:15:31 2017
+Fri Dec 08 17:37:06 2017
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -22,12 +22,10 @@ Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
  14. General Register Statistics
  15. Inverted Register Statistics
  16. Multiplexer Restructuring Statistics (Restructuring Performed)
- 17. Port Connectivity Checks: "lcd_printer:LP|lcd_controller:dut"
- 18. Port Connectivity Checks: "lcd_printer:LP"
- 19. Port Connectivity Checks: "datapath:DP"
- 20. Post-Synthesis Netlist Statistics for Top Partition
- 21. Elapsed Time Per Partition
- 22. Analysis & Synthesis Messages
+ 17. Port Connectivity Checks: "controller:CT"
+ 18. Post-Synthesis Netlist Statistics for Top Partition
+ 19. Elapsed Time Per Partition
+ 20. Analysis & Synthesis Messages
 
 
 
@@ -54,16 +52,16 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Nov 20 15:15:31 2017       ;
+; Analysis & Synthesis Status        ; Successful - Fri Dec 08 17:37:05 2017       ;
 ; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; main                                        ;
 ; Top-level Entity Name              ; main                                        ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 314                                         ;
-;     Total combinational functions  ; 310                                         ;
-;     Dedicated logic registers      ; 87                                          ;
-; Total registers                    ; 87                                          ;
-; Total pins                         ; 104                                         ;
+; Total logic elements               ; 316                                         ;
+;     Total combinational functions  ; 296                                         ;
+;     Dedicated logic registers      ; 104                                         ;
+; Total registers                    ; 104                                         ;
+; Total pins                         ; 97                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -193,29 +191,29 @@ agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 314            ;
+; Estimated Total logic elements              ; 316            ;
 ;                                             ;                ;
-; Total combinational functions               ; 310            ;
+; Total combinational functions               ; 296            ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 132            ;
-;     -- 3 input functions                    ; 40             ;
-;     -- <=2 input functions                  ; 138            ;
+;     -- 4 input functions                    ; 121            ;
+;     -- 3 input functions                    ; 41             ;
+;     -- <=2 input functions                  ; 134            ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 253            ;
-;     -- arithmetic mode                      ; 57             ;
+;     -- normal mode                          ; 236            ;
+;     -- arithmetic mode                      ; 60             ;
 ;                                             ;                ;
-; Total registers                             ; 87             ;
-;     -- Dedicated logic registers            ; 87             ;
+; Total registers                             ; 104            ;
+;     -- Dedicated logic registers            ; 104            ;
 ;     -- I/O registers                        ; 0              ;
 ;                                             ;                ;
-; I/O pins                                    ; 104            ;
+; I/O pins                                    ; 97             ;
 ;                                             ;                ;
 ; Embedded Multiplier 9-bit elements          ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 87             ;
-; Total fan-out                               ; 1309           ;
+; Maximum fan-out                             ; 104            ;
+; Total fan-out                               ; 1288           ;
 ; Average fan-out                             ; 2.04           ;
 +---------------------------------------------+----------------+
 
@@ -225,10 +223,13 @@ agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------+----------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                     ; Entity Name    ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------+----------------+--------------+
-; |main                      ; 310 (0)             ; 87 (0)                    ; 0           ; 0            ; 0       ; 0         ; 104  ; 0            ; |main                                   ; main           ; work         ;
-;    |controller:CT|         ; 94 (94)             ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|controller:CT                     ; controller     ; work         ;
-;    |lcd_printer:LP|        ; 216 (35)            ; 55 (9)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|lcd_printer:LP                    ; lcd_printer    ; work         ;
-;       |lcd_controller:dut| ; 181 (181)           ; 46 (46)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|lcd_printer:LP|lcd_controller:dut ; lcd_controller ; work         ;
+; |main                      ; 296 (0)             ; 104 (0)                   ; 0           ; 0            ; 0       ; 0         ; 97   ; 0            ; |main                                   ; main           ; work         ;
+;    |controller:CT|         ; 64 (64)             ; 28 (28)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|controller:CT                     ; controller     ; work         ;
+;    |datapath:DP|           ; 8 (8)               ; 16 (0)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|datapath:DP                       ; datapath       ; work         ;
+;       |reg_8b_pipo:RB|     ; 0 (0)               ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|datapath:DP|reg_8b_pipo:RB        ; reg_8b_pipo    ; work         ;
+;       |reg_8b_pipo:RG|     ; 0 (0)               ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|datapath:DP|reg_8b_pipo:RG        ; reg_8b_pipo    ; work         ;
+;    |lcd_printer:LP|        ; 224 (36)            ; 60 (12)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|lcd_printer:LP                    ; lcd_printer    ; work         ;
+;       |lcd_controller:dut| ; 188 (188)           ; 48 (48)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|lcd_printer:LP|lcd_controller:dut ; lcd_controller ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------+----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -274,16 +275,14 @@ Encoding Type:  One-Hot
 +--------------------------------+---------------------------+--------------------------------+--------------------------------+-------------------------------+--------------------------+--------------------------+-------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------+
-; User-Specified and Inferred Latches                                                                                   ;
-+----------------------------------------------------+-----------------------------------------+------------------------+
-; Latch Name                                         ; Latch Enable Signal                     ; Free of Timing Hazards ;
-+----------------------------------------------------+-----------------------------------------+------------------------+
-; controller:CT|PRINT                                ; controller:CT|WideOr2                   ; yes                    ;
-; controller:CT|LIGHT_BLUE                           ; controller:CT|current_state.state_print ; yes                    ;
-; controller:CT|LIGHT_GREEN                          ; controller:CT|current_state.state_print ; yes                    ;
-; Number of user-specified and inferred latches = 3  ;                                         ;                        ;
-+----------------------------------------------------+-----------------------------------------+------------------------+
++-----------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                 ;
++----------------------------------------------------+-----------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal   ; Free of Timing Hazards ;
++----------------------------------------------------+-----------------------+------------------------+
+; controller:CT|PRINT                                ; controller:CT|WideOr3 ; yes                    ;
+; Number of user-specified and inferred latches = 1  ;                       ;                        ;
++----------------------------------------------------+-----------------------+------------------------+
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
@@ -294,29 +293,27 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------------+----------------------------------------+
 ; lcd_printer:LP|lcd_bus[7,8]                        ; Merged with lcd_printer:LP|lcd_bus[5]  ;
 ; lcd_printer:LP|lcd_bus[9]                          ; Merged with lcd_printer:LP|lcd_bus[6]  ;
-; lcd_printer:LP|char[3]                             ; Stuck at GND due to stuck port data_in ;
 ; lcd_printer:LP|lcd_bus[5]                          ; Stuck at GND due to stuck port data_in ;
 ; lcd_printer:LP|lcd_bus[6]                          ; Stuck at VCC due to stuck port data_in ;
 ; lcd_printer:LP|lcd_controller:dut|rw               ; Stuck at GND due to stuck port data_in ;
 ; lcd_printer:LP|lcd_controller:dut|lcd_data[7]      ; Stuck at GND due to stuck port data_in ;
-; controller:CT|count[26]                            ; Stuck at GND due to stuck port data_in ;
-; lcd_printer:LP|lcd_controller:dut|current_state.S0 ; Lost fanout                            ;
+; controller:CT|count[22..26]                        ; Stuck at GND due to stuck port data_in ;
 ; lcd_printer:LP|lcd_controller:dut|current_state.S2 ; Lost fanout                            ;
-; lcd_printer:LP|lcd_controller:dut|current_state.S1 ; Stuck at GND due to stuck port data_in ;
 ; controller:CT|current_state.state_init             ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 13             ;                                        ;
+; Total Number of Removed Registers = 14             ;                                        ;
 +----------------------------------------------------+----------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                ;
-+------------------------+---------------------------+-------------------------------------------------------+
-; Register name          ; Reason for Removal        ; Registers Removed due to This Register                ;
-+------------------------+---------------------------+-------------------------------------------------------+
-; lcd_printer:LP|char[3] ; Stuck at GND              ; lcd_printer:LP|lcd_bus[5], lcd_printer:LP|lcd_bus[6], ;
-;                        ; due to stuck port data_in ; lcd_printer:LP|lcd_controller:dut|rw,                 ;
-;                        ;                           ; lcd_printer:LP|lcd_controller:dut|lcd_data[7]         ;
-+------------------------+---------------------------+-------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                           ;
++---------------------------+---------------------------+-----------------------------------------------+
+; Register name             ; Reason for Removal        ; Registers Removed due to This Register        ;
++---------------------------+---------------------------+-----------------------------------------------+
+; lcd_printer:LP|lcd_bus[5] ; Stuck at GND              ; lcd_printer:LP|lcd_controller:dut|rw,         ;
+;                           ; due to stuck port data_in ; lcd_printer:LP|lcd_controller:dut|lcd_data[7] ;
+; controller:CT|count[26]   ; Stuck at GND              ; controller:CT|count[22]                       ;
+;                           ; due to stuck port data_in ;                                               ;
++---------------------------+---------------------------+-----------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -324,12 +321,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 87    ;
+; Total registers                              ; 104   ;
 ; Number of registers using Synchronous Clear  ; 1     ;
-; Number of registers using Synchronous Load   ; 5     ;
-; Number of registers using Asynchronous Clear ; 32    ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 28    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 21    ;
+; Number of registers using Clock Enable       ; 37    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -340,7 +337,8 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
 ; lcd_printer:LP|lcd_controller:dut|busy ; 2       ;
-; Total number of inverted registers = 1 ;         ;
+; lcd_printer:LP|lcd_clear               ; 3       ;
+; Total number of inverted registers = 2 ;         ;
 +----------------------------------------+---------+
 
 
@@ -350,39 +348,20 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                            ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------+
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|lcd_printer:LP|lcd_controller:dut|rw            ;
-; 7:1                ; 32 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |main|lcd_printer:LP|lcd_controller:dut|clk_count[22] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 0 LEs                ; 4 LEs                  ; Yes        ; |main|lcd_printer:LP|lcd_bus[5]                       ;
-; 13:1               ; 3 bits    ; 24 LEs        ; 6 LEs                ; 18 LEs                 ; Yes        ; |main|lcd_printer:LP|lcd_controller:dut|lcd_data[7]   ;
-; 14:1               ; 5 bits    ; 45 LEs        ; 35 LEs               ; 10 LEs                 ; Yes        ; |main|lcd_printer:LP|lcd_controller:dut|lcd_data[4]   ;
+; 18:1               ; 2 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |main|lcd_printer:LP|lcd_bus[6]                       ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |main|lcd_printer:LP|lcd_controller:dut|clk_count[23] ;
+; 13:1               ; 3 bits    ; 24 LEs        ; 6 LEs                ; 18 LEs                 ; Yes        ; |main|lcd_printer:LP|lcd_controller:dut|lcd_data[5]   ;
+; 14:1               ; 5 bits    ; 45 LEs        ; 35 LEs               ; 10 LEs                 ; Yes        ; |main|lcd_printer:LP|lcd_controller:dut|lcd_data[0]   ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------+
 
 
-+---------------------------------------------------------------+
-; Port Connectivity Checks: "lcd_printer:LP|lcd_controller:dut" ;
-+---------+-------+----------+----------------------------------+
-; Port    ; Type  ; Severity ; Details                          ;
-+---------+-------+----------+----------------------------------+
-; reset_n ; Input ; Info     ; Stuck at VCC                     ;
-+---------+-------+----------+----------------------------------+
-
-
-+--------------------------------------------+
-; Port Connectivity Checks: "lcd_printer:LP" ;
-+-------+-------+----------+-----------------+
-; Port  ; Type  ; Severity ; Details         ;
-+-------+-------+----------+-----------------+
-; print ; Input ; Info     ; Stuck at VCC    ;
-+-------+-------+----------+-----------------+
-
-
-+---------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "datapath:DP"                                                                             ;
-+-----------+--------+----------+-------------------------------------------------------------------------------------+
-; Port      ; Type   ; Severity ; Details                                                                             ;
-+-----------+--------+----------+-------------------------------------------------------------------------------------+
-; out_blue  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; out_green ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-----------+--------+----------+-------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "controller:CT"                                                                         ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; welcome ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -390,27 +369,27 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 104                         ;
-; cycloneiii_ff         ; 87                          ;
-;     CLR               ; 26                          ;
-;     ENA               ; 9                           ;
-;     ENA CLR           ; 6                           ;
+; boundary_port         ; 97                          ;
+; cycloneiii_ff         ; 104                         ;
+;     CLR               ; 23                          ;
+;     ENA               ; 31                          ;
+;     ENA CLR           ; 5                           ;
 ;     ENA SCLR          ; 1                           ;
-;     ENA SLD           ; 5                           ;
-;     plain             ; 40                          ;
+;     plain             ; 44                          ;
 ; cycloneiii_io_obuf    ; 36                          ;
-; cycloneiii_lcell_comb ; 311                         ;
-;     arith             ; 57                          ;
-;         2 data inputs ; 57                          ;
-;     normal            ; 254                         ;
+; cycloneiii_lcell_comb ; 297                         ;
+;     arith             ; 60                          ;
+;         2 data inputs ; 53                          ;
+;         3 data inputs ; 7                           ;
+;     normal            ; 237                         ;
 ;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 2                           ;
 ;         2 data inputs ; 78                          ;
-;         3 data inputs ; 40                          ;
-;         4 data inputs ; 132                         ;
+;         3 data inputs ; 34                          ;
+;         4 data inputs ; 121                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 12.40                       ;
-; Average LUT depth     ; 8.14                        ;
+; Max LUT depth         ; 12.00                       ;
+; Average LUT depth     ; 7.64                        ;
 +-----------------------+-----------------------------+
 
 
@@ -419,7 +398,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:02     ;
 +----------------+--------------+
 
 
@@ -429,7 +408,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Mon Nov 20 15:15:13 2017
+    Info: Processing started: Fri Dec 08 17:36:44 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off projeto_final -c main
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -437,137 +416,140 @@ Info (12021): Found 2 design units, including 1 entities, in source file reg_8b_
     Info (12022): Found design unit 1: reg_8b_pipo-functional File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/reg_8b_pipo.vhd Line: 13
     Info (12023): Found entity 1: reg_8b_pipo File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/reg_8b_pipo.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file lcd_printer.vhd
-    Info (12022): Found design unit 1: lcd_printer-behavior File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/lcd_printer.vhd Line: 43
-    Info (12023): Found entity 1: lcd_printer File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/lcd_printer.vhd Line: 31
+    Info (12022): Found design unit 1: lcd_printer-behavior File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/lcd_printer.vhd Line: 27
+    Info (12023): Found entity 1: lcd_printer File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/lcd_printer.vhd Line: 15
 Info (12021): Found 2 design units, including 1 entities, in source file lcd_controller.vhd
     Info (12022): Found design unit 1: lcd_controller-controller File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/lcd_controller.vhd Line: 62
     Info (12023): Found entity 1: lcd_controller File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/lcd_controller.vhd Line: 51
 Info (12021): Found 2 design units, including 1 entities, in source file main.vhd
-    Info (12022): Found design unit 1: main-funcional File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 32
+    Info (12022): Found design unit 1: main-funcional File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 31
     Info (12023): Found entity 1: main File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 14
 Info (12021): Found 2 design units, including 1 entities, in source file datapath.vhd
-    Info (12022): Found design unit 1: datapath-funcional File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/datapath.vhd Line: 27
+    Info (12022): Found design unit 1: datapath-funcional File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/datapath.vhd Line: 26
     Info (12023): Found entity 1: datapath File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/datapath.vhd Line: 14
 Info (12021): Found 2 design units, including 1 entities, in source file controller.vhd
-    Info (12022): Found design unit 1: controller-funcional File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 30
+    Info (12022): Found design unit 1: controller-funcional File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 31
     Info (12023): Found entity 1: controller File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 15
 Info (12127): Elaborating entity "main" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at main.vhd(19): used implicit default value for signal "HEX0" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
-Warning (10541): VHDL Signal Declaration warning at main.vhd(20): used implicit default value for signal "LEDG" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
-Warning (10036): Verilog HDL or VHDL warning at main.vhd(36): object "out_blue" assigned a value but never read File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 36
-Warning (10036): Verilog HDL or VHDL warning at main.vhd(36): object "out_green" assigned a value but never read File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 36
-Warning (10873): Using initial value X (don't care) for net "LEDR[17..1]" at main.vhd(21) File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-Info (12128): Elaborating entity "controller" for hierarchy "controller:CT" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 92
-Warning (10492): VHDL Process Statement warning at controller.vhd(70): signal "COMPARE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 70
-Warning (10492): VHDL Process Statement warning at controller.vhd(80): signal "COMPARE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 80
-Warning (10492): VHDL Process Statement warning at controller.vhd(90): signal "COMPARE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 90
-Warning (10492): VHDL Process Statement warning at controller.vhd(100): signal "COMPARE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 100
-Warning (10492): VHDL Process Statement warning at controller.vhd(110): signal "COMPARE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 110
-Warning (10631): VHDL Process Statement warning at controller.vhd(53): inferring latch(es) for signal or variable "ADC_INIT", which holds its previous value in one or more paths through the process File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 53
-Warning (10631): VHDL Process Statement warning at controller.vhd(53): inferring latch(es) for signal or variable "PRINT", which holds its previous value in one or more paths through the process File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 53
-Warning (10631): VHDL Process Statement warning at controller.vhd(53): inferring latch(es) for signal or variable "LIGHT_BLUE", which holds its previous value in one or more paths through the process File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 53
-Warning (10631): VHDL Process Statement warning at controller.vhd(53): inferring latch(es) for signal or variable "READ_BLUE", which holds its previous value in one or more paths through the process File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 53
-Warning (10631): VHDL Process Statement warning at controller.vhd(53): inferring latch(es) for signal or variable "LIGHT_GREEN", which holds its previous value in one or more paths through the process File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 53
-Warning (10631): VHDL Process Statement warning at controller.vhd(53): inferring latch(es) for signal or variable "READ_GREEN", which holds its previous value in one or more paths through the process File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 53
-Info (10041): Inferred latch for "READ_GREEN" at controller.vhd(53) File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 53
-Info (10041): Inferred latch for "LIGHT_GREEN" at controller.vhd(53) File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 53
-Info (10041): Inferred latch for "READ_BLUE" at controller.vhd(53) File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 53
-Info (10041): Inferred latch for "LIGHT_BLUE" at controller.vhd(53) File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 53
-Info (10041): Inferred latch for "PRINT" at controller.vhd(53) File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 53
-Info (10041): Inferred latch for "ADC_INIT" at controller.vhd(53) File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 53
-Info (12128): Elaborating entity "datapath" for hierarchy "datapath:DP" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 93
+Warning (10541): VHDL Signal Declaration warning at main.vhd(19): used implicit default value for signal "LEDG" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
+Warning (10541): VHDL Signal Declaration warning at main.vhd(20): used implicit default value for signal "LEDR" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+Warning (10036): Verilog HDL or VHDL warning at main.vhd(34): object "welcome" assigned a value but never read File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 34
+Info (12128): Elaborating entity "controller" for hierarchy "controller:CT" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 93
+Warning (10492): VHDL Process Statement warning at controller.vhd(72): signal "COMPARE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 72
+Warning (10492): VHDL Process Statement warning at controller.vhd(82): signal "COMPARE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 82
+Warning (10492): VHDL Process Statement warning at controller.vhd(92): signal "COMPARE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 92
+Warning (10492): VHDL Process Statement warning at controller.vhd(102): signal "COMPARE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 102
+Warning (10492): VHDL Process Statement warning at controller.vhd(112): signal "COMPARE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 112
+Warning (10631): VHDL Process Statement warning at controller.vhd(54): inferring latch(es) for signal or variable "ADC_INIT", which holds its previous value in one or more paths through the process File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 54
+Warning (10631): VHDL Process Statement warning at controller.vhd(54): inferring latch(es) for signal or variable "PRINT", which holds its previous value in one or more paths through the process File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 54
+Warning (10631): VHDL Process Statement warning at controller.vhd(54): inferring latch(es) for signal or variable "WELCOME", which holds its previous value in one or more paths through the process File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 54
+Warning (10631): VHDL Process Statement warning at controller.vhd(54): inferring latch(es) for signal or variable "LIGHT_BLUE", which holds its previous value in one or more paths through the process File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 54
+Warning (10631): VHDL Process Statement warning at controller.vhd(54): inferring latch(es) for signal or variable "READ_BLUE", which holds its previous value in one or more paths through the process File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 54
+Warning (10631): VHDL Process Statement warning at controller.vhd(54): inferring latch(es) for signal or variable "LIGHT_GREEN", which holds its previous value in one or more paths through the process File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 54
+Warning (10631): VHDL Process Statement warning at controller.vhd(54): inferring latch(es) for signal or variable "READ_GREEN", which holds its previous value in one or more paths through the process File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 54
+Info (10041): Inferred latch for "READ_GREEN" at controller.vhd(54) File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 54
+Info (10041): Inferred latch for "LIGHT_GREEN" at controller.vhd(54) File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 54
+Info (10041): Inferred latch for "READ_BLUE" at controller.vhd(54) File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 54
+Info (10041): Inferred latch for "LIGHT_BLUE" at controller.vhd(54) File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 54
+Info (10041): Inferred latch for "WELCOME" at controller.vhd(54) File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 54
+Info (10041): Inferred latch for "PRINT" at controller.vhd(54) File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 54
+Info (10041): Inferred latch for "ADC_INIT" at controller.vhd(54) File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 54
+Info (12128): Elaborating entity "datapath" for hierarchy "datapath:DP" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 94
 Info (12128): Elaborating entity "reg_8b_pipo" for hierarchy "datapath:DP|reg_8b_pipo:RB" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/datapath.vhd Line: 37
 Warning (10492): VHDL Process Statement warning at reg_8b_pipo.vhd(17): signal "EN" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/reg_8b_pipo.vhd Line: 17
-Info (12128): Elaborating entity "lcd_printer" for hierarchy "lcd_printer:LP" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 94
-Info (12128): Elaborating entity "lcd_controller" for hierarchy "lcd_printer:LP|lcd_controller:dut" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/lcd_printer.vhd Line: 87
+Info (12128): Elaborating entity "lcd_printer" for hierarchy "lcd_printer:LP" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 95
+Info (12128): Elaborating entity "lcd_controller" for hierarchy "lcd_printer:LP|lcd_controller:dut" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/lcd_printer.vhd Line: 72
 Warning (10492): VHDL Process Statement warning at lcd_controller.vhd(85): signal "reset_n" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/lcd_controller.vhd Line: 85
 Warning (10492): VHDL Process Statement warning at lcd_controller.vhd(97): signal "reset_n" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/lcd_controller.vhd Line: 97
+Warning (14026): LATCH primitive "controller:CT|LIGHT_BLUE" is permanently enabled File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 20
+Warning (14026): LATCH primitive "controller:CT|LIGHT_GREEN" is permanently enabled File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 21
+Warning (14026): LATCH primitive "controller:CT|READ_BLUE" is permanently enabled File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 22
+Warning (14026): LATCH primitive "controller:CT|READ_GREEN" is permanently enabled File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 23
+Warning (14026): LATCH primitive "controller:CT|LIGHT_BLUE" is permanently enabled File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 20
+Warning (14026): LATCH primitive "controller:CT|LIGHT_GREEN" is permanently enabled File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 21
+Warning (14026): LATCH primitive "controller:CT|READ_BLUE" is permanently enabled File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 22
+Warning (14026): LATCH primitive "controller:CT|READ_GREEN" is permanently enabled File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 23
 Warning (13034): The following nodes have both tri-state and non-tri-state drivers
-    Warning (13035): Inserted always-enabled tri-state buffer between "GPIO[10]" and its non-tri-state driver. File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13035): Inserted always-enabled tri-state buffer between "GPIO[11]" and its non-tri-state driver. File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
+    Warning (13035): Inserted always-enabled tri-state buffer between "GPIO[10]" and its non-tri-state driver. File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13035): Inserted always-enabled tri-state buffer between "GPIO[11]" and its non-tri-state driver. File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
 Warning (13039): The following bidirectional pins have no drivers
-    Warning (13040): bidirectional pin "GPIO[0]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[1]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[2]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[3]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[4]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[5]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[6]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[7]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[9]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[12]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[13]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[14]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[15]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[16]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[17]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[18]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[19]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[20]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[21]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[22]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[23]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[24]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[25]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[26]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[27]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[28]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[29]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[30]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[31]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[32]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[33]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[34]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13040): bidirectional pin "GPIO[35]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
+    Warning (13040): bidirectional pin "GPIO[0]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[1]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[2]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[3]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[4]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[5]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[6]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[7]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[8]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[9]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[13]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[14]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[15]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[16]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[17]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[18]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[19]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[20]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[21]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[22]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[23]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[24]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[25]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[26]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[27]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[28]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[29]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[30]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[31]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[32]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[33]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[34]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13040): bidirectional pin "GPIO[35]" has no driver File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
 Warning (13012): Latch controller:CT|PRINT has unsafe behavior File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 24
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal controller:CT|current_state.state_wait File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 32
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal controller:CT|current_state.state_wait File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/controller.vhd Line: 33
 Warning (13009): TRI or OPNDRN buffers permanently enabled
-    Warning (13010): Node "GPIO[10]~synth" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
-    Warning (13010): Node "GPIO[11]~synth" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 26
+    Warning (13010): Node "GPIO[10]~synth" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13010): Node "GPIO[11]~synth" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "HEX0[0]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
-    Warning (13410): Pin "HEX0[1]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
-    Warning (13410): Pin "HEX0[2]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
-    Warning (13410): Pin "HEX0[3]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
-    Warning (13410): Pin "HEX0[4]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
-    Warning (13410): Pin "HEX0[5]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
-    Warning (13410): Pin "HEX0[6]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
-    Warning (13410): Pin "LEDG[0]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
-    Warning (13410): Pin "LEDG[1]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
-    Warning (13410): Pin "LEDG[2]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
-    Warning (13410): Pin "LEDG[3]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
-    Warning (13410): Pin "LEDG[4]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
-    Warning (13410): Pin "LEDG[5]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
-    Warning (13410): Pin "LEDG[6]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
-    Warning (13410): Pin "LEDG[7]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
-    Warning (13410): Pin "LEDG[8]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
-    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[10]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[11]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[12]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[13]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[14]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[15]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[16]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LEDR[17]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
-    Warning (13410): Pin "LCD_RW" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 22
-    Warning (13410): Pin "LCD_DATA[7]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 25
+    Warning (13410): Pin "LEDG[0]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
+    Warning (13410): Pin "LEDG[1]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
+    Warning (13410): Pin "LEDG[2]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
+    Warning (13410): Pin "LEDG[3]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
+    Warning (13410): Pin "LEDG[4]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
+    Warning (13410): Pin "LEDG[5]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
+    Warning (13410): Pin "LEDG[6]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
+    Warning (13410): Pin "LEDG[7]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
+    Warning (13410): Pin "LEDG[8]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 19
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[10]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[11]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[12]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[13]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[14]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[15]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[16]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LEDR[17]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 20
+    Warning (13410): Pin "LCD_RW" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 21
+    Warning (13410): Pin "LCD_DATA[7]" is stuck at GND File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 24
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 2 registers lost all their fanouts during netlist optimizations.
+Info (17049): 1 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 20 input pin(s) that do not drive logic
+Warning (21074): Design contains 21 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY[1]" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 17
     Warning (15610): No output dependent on input pin "KEY[2]" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 17
     Warning (15610): No output dependent on input pin "KEY[3]" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 17
+    Warning (15610): No output dependent on input pin "SW[0]" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 18
     Warning (15610): No output dependent on input pin "SW[1]" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 18
     Warning (15610): No output dependent on input pin "SW[2]" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 18
     Warning (15610): No output dependent on input pin "SW[3]" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 18
@@ -585,15 +567,15 @@ Warning (21074): Design contains 20 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[15]" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 18
     Warning (15610): No output dependent on input pin "SW[16]" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 18
     Warning (15610): No output dependent on input pin "SW[17]" File: C:/Users/leofl_000/Documents/01 - Disciplinas específicas/02 - Digital/04 - Práticas e projetos - VHDL/Project_Color_Identifier/main.vhd Line: 18
-Info (21057): Implemented 423 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 417 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 23 input pins
-    Info (21059): Implemented 45 output pins
+    Info (21059): Implemented 38 output pins
     Info (21060): Implemented 36 bidirectional pins
-    Info (21061): Implemented 319 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 119 warnings
-    Info: Peak virtual memory: 646 megabytes
-    Info: Processing ended: Mon Nov 20 15:15:31 2017
-    Info: Elapsed time: 00:00:18
-    Info: Total CPU time (on all processors): 00:00:39
+    Info (21061): Implemented 320 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 121 warnings
+    Info: Peak virtual memory: 649 megabytes
+    Info: Processing ended: Fri Dec 08 17:37:06 2017
+    Info: Elapsed time: 00:00:22
+    Info: Total CPU time (on all processors): 00:00:45
 
 

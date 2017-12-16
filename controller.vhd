@@ -1,7 +1,7 @@
 --=================================================--
 --	Project:	Color indentifier with FPGA
 --	File:		Controller.vhd 
---	Author: 	Leonardo Benitez and Gencen
+--	Author: 	Leonardo Benitez
 --	Endianess:	litle endian
 --	Version:	1.0 					   29/10/2017
 --=================================================--
@@ -21,7 +21,8 @@ entity controller is
 		LIGHT_GREEN	: out	std_logic;	-- Signal to the sensor
 		READ_BLUE	: out 	std_logic;	-- Command to datapath register enable
 		READ_GREEN	: out	std_logic;	-- Command to datapath register enable
-		PRINT		: out 	std_logic	-- Command to print result in LCD
+		PRINT		: out 	std_logic;	-- Command to print result in LCD
+		WELCOME		: out 	std_logic	-- Inicial print
 	);
 end controller;
 
@@ -56,7 +57,8 @@ begin
 			when state_init =>
 				ADC_INIT	<= '0';
 				PRINT		<= '1';
-				time 		<= 1000*ms;
+				WELCOME		<= '1';
+				time 		<= 0;
 				next_state	<= state_wait;
 			
 			when state_wait =>
@@ -112,8 +114,13 @@ begin
 				end if;
 				
 			when state_print =>
+				LIGHT_BLUE	<= '0';
+				READ_BLUE	<= '0';
+				LIGHT_GREEN	<= '0';
+				READ_GREEN	<= '0';
+				WELCOME		<= '0';
 				PRINT		<= '1';
-				time 		<= 1000*ms;
+				time		<= 3;
 				next_state	<= state_wait;
 		end case;
 	end process;

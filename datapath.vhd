@@ -1,7 +1,7 @@
 --=================================================--
 --	Project:	Color indentifier with FPGA
 --	File:		datapath.vhd 
---	Author: 	Leonardo Benitez and Gencen
+--	Author: 	Leonardo Benitez
 --	Endianess:	litle endian
 --	Version:	1.0 					   29/10/2017
 --=================================================--
@@ -17,14 +17,14 @@ entity datapath is
 		EN_BLUE		: in 	std_logic;							-- Command from the controller 
 		EN_GREEN	: in 	std_logic;							-- Command from the controller 
 		DATA		: in	std_logic_vector (7 downto 0);		-- Data input from the sensor 
-		OUT_BLUE	: out	std_logic_vector (7 downto 0);
-		OUT_GREEN	: out	std_logic_vector (7 downto 0)
+		LCD_WORD	: out	std_logic_vector (1 downto 0)
 	);
 end datapath;
 
 -----------------------------------------------------
 
 architecture funcional of datapath is
+	signal out_blue, out_green: std_logic_vector (7 downto 0);
 	component reg_8b_pipo is
 		port (
 			D		: in	std_logic_vector(7 downto 0);
@@ -34,6 +34,13 @@ architecture funcional of datapath is
 		);	
 	end component;
 begin
-	RB: reg_8b_pipo port map (DATA, CLK, EN_BLUE,	OUT_BLUE);
-	RG: reg_8b_pipo port map (DATA, CLK, EN_GREEN,	OUT_GREEN);
+	RB: reg_8b_pipo port map (DATA, CLK, EN_BLUE,	out_blue);
+	RG: reg_8b_pipo port map (DATA, CLK, EN_GREEN,	out_green);
+	
+	-- LEDG(0)				<= welcome;
+	-- LEDR(1 downto 0) 	<= lcd_word;
+	
+	LCD_WORD <= --"00" when welcome = '1' else
+				"01" when out_green > out_blue else
+				"10";	
 end funcional;

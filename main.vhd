@@ -1,7 +1,7 @@
 --=================================================--
 --	Project:	Color indentifier with FPGA
 --	File:		main.vhd 
---	Author: 	Leonardo Benitez and Gencen
+--	Author: 	Leonardo Benitez
 --	Endianness:	litle endian
 --	Version:	1.0 					   29/10/2017
 --=================================================--
@@ -15,12 +15,11 @@ entity main is
 	port(
 		CLOCK_50: in	std_logic;
 		KEY		: in	std_logic_vector (3 downto 0);	-- Active in Low
-		SW		: in	std_logic_vector (17 downto 0);	-- Active in high (not used now)
-		HEX0	: out	std_logic_vector (6 downto 0);	
-		LEDG	: out	std_logic_vector (8 downto 0);	-- (not used now)
-		LEDR	: out	std_logic_vector (17 downto 0);	
+		SW		: in	std_logic_vector (17 downto 0);	-- (only for debug) Active in high 
+		LEDG	: out	std_logic_vector (8 downto 0);	-- (only for debug)
+		LEDR	: out	std_logic_vector (17 downto 0);	-- (only for debug)
 		LCD_RW	: out	std_logic;						-- LCD Read/Write
-		LCD_RS	: out	std_logic;						-- LCD ??
+		LCD_RS	: out	std_logic;						-- LCD Register Selection
 		LCD_EN	: out	std_logic;						-- LCD Enable
 		LCD_DATA: out	std_logic_vector (7 downto 0);	-- LCD data bus
 		GPIO	: inout	std_logic_vector (35 downto 0)	-- General Pourpouse IO
@@ -32,8 +31,10 @@ end main;
 architecture funcional of main is
 	signal en_blue, en_green 		: std_logic;
 	signal lcd_print 				: std_logic;
+	signal welcome	 				: std_logic;
+	signal lcd_word					: std_logic_vector (1 downto 0);
 	signal data_in					: std_logic_vector (7 downto 0);
-	signal out_blue, out_green		: std_logic_vector (7 downto 0);
+
 	
 	signal lcd_busy, lcd_clear, lcd_enable: std_logic;
 	signal lcd_bus: std_logic_vector (9 downto 0);
@@ -47,7 +48,8 @@ architecture funcional of main is
 			LIGHT_GREEN	: out	std_logic;	-- Signal to the sensor
 			READ_BLUE	: out 	std_logic;	-- Command to datapath register enable
 			READ_GREEN	: out	std_logic;	-- Command to datapath register enable
-			PRINT		: out 	std_logic	-- Command to print result in LCD
+			PRINT		: out 	std_logic;	-- Command to print result in LCD
+			WELCOME		: out 	std_logic	-- Inicial print
 		);
 	end component;
 
@@ -57,8 +59,7 @@ architecture funcional of main is
 			EN_BLUE		: in 	std_logic;							-- Command from the controller 
 			EN_GREEN	: in 	std_logic;							-- Command from the controller 
 			DATA		: in	std_logic_vector (7 downto 0);		-- Data input from the sensor 
-			OUT_BLUE	: out	std_logic_vector (7 downto 0);
-			OUT_GREEN	: out	std_logic_vector (7 downto 0)
+			LCD_WORD	: out	std_logic_vector (1 downto 0)
 		);
 	end component;
 	
@@ -78,7 +79,7 @@ architecture funcional of main is
 		port(
 			clk       	: in  	std_logic;  					-- System clock
 			print		: in 	std_logic;						-- Comand from de Main Controller to print a word
-			word  		: in	std_logic;						-- What the printer should print
+			word  		: in	std_logic_vector (1 downto 0);	-- What the printer should print (00=Welcome, 01=Green, 10=Blue)
 			rw, rs, en	: out 	std_logic;  					-- Read/write, setup/data, and enable for lcd
 			lcd_data  	: out 	std_logic_vector(7 downto 0)	-- Data signals for lcd
 		);
@@ -89,12 +90,7 @@ begin
 	data_in(2) <= GPIO(4);	data_in(6) <= GPIO(5);
 	data_in(3) <= GPIO(6);	data_in(7) <= GPIO(7);	
 	
-	CT: controller	port map (CLOCK_50, KEY(0), GPIO(8), GPIO(10), GPIO(11), en_blue, en_green, LEDR(0));
-	DP: datapath	port map (CLOCK_50, en_blue, en_green, data_in(7 downto 0), out_blue, out_green);
-	LP:	lcd_printer	port map (CLOCK_50, '1', SW(0), LCD_RW, LCD_RS, LCD_EN, LCD_DATA);
-	
-	
-	--	DP: datapath	port map (CLOCK_50, en_blue, en_green, data_in(7 downto 0), LEDR(17 downto 10), LEDR(7 downto 0));
-	--HEX0 <= "0001000" when out_blue > out_green else
-	--		"1000001";
+	CT: controller	port map (CLOCK_50, KEY(0), GPIO(12), GPIO(10), GPIO(11), en_blue, en_green, lcd_print, welcome);
+	DP: datapath	port map (CLOCK_50, en_blue, en_green, data_in(7 downto 0), lcd_word);
+	LP:	lcd_printer	port map (CLOCK_50, lcd_print, lcd_word, LCD_RW, LCD_RS, LCD_EN, LCD_DATA);
 end funcional;
